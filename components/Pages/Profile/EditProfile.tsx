@@ -3,30 +3,27 @@
 import Input from "@/components/Inputs/Input";
 import React, { useState } from "react";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { User } from "@prisma/client";
 
-const EditProfile = () => {
+const EditProfile = ({ currentUser }: { currentUser: User }) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FieldValues>({
 		defaultValues: {
-			age: "",
-			weightLbs: "",
-			goalWeightLbs: "",
-			heightInches: "",
-			bmi: "",
-			goalText: "",
-			dietPlan: "",
-			caloriesPerDay: "",
-			proteinGrams: "",
-			fatGrams: "",
-			carbGrams: "",
-			waistInches: "",
-			chestInches: "",
-			hipsInches: "",
-			armInches: "",
-			thighInches: "",
+			age: currentUser?.age ?? "",
+			gender: currentUser?.gender ?? "",
+			weightLbs: currentUser?.weightLbs ?? "",
+			goalWeightLbs: currentUser?.goalWeightLbs ?? "",
+			heightInches: currentUser?.heightInches ?? "",
+			goalText: currentUser?.goalText ?? "",
+			dietPlan: currentUser?.dietPlan ?? "",
+			waistInches: currentUser?.waistInches ?? "",
+			chestInches: currentUser?.chestInches ?? "",
+			hipsInches: currentUser?.hipsInches ?? "",
+			armInches: currentUser?.armInches ?? "",
+			thighInches: currentUser?.thighInches ?? "",
 		},
 	});
 
@@ -34,7 +31,6 @@ const EditProfile = () => {
 	const [message, setMessage] = useState<string | null>(null);
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-		console.log("Submitted data:", data);
 		try {
 			setLoading(true);
 			setMessage(null);
@@ -60,15 +56,25 @@ const EditProfile = () => {
 
 	return (
 		<div className="flex flex-col items-center p-8">
-			<h1 className="text-2xl font-semibold mb-6">Edit Profile</h1>
+			<h1 className="text-[3.5vh] steiner tracking-[2px] font-semibold mb-6">
+				Edit Profile
+			</h1>
+
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl"
+				className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full"
 			>
 				<Input
 					id="age"
 					label="Age"
 					type="number"
+					register={register}
+					errors={errors}
+				/>
+				<Input
+					id="gender"
+					label="Gender"
+					type="text"
 					register={register}
 					errors={errors}
 				/>
@@ -93,13 +99,6 @@ const EditProfile = () => {
 					register={register}
 					errors={errors}
 				/>
-				<Input
-					id="bmi"
-					label="BMI"
-					type="number"
-					register={register}
-					errors={errors}
-				/>
 
 				<Input
 					id="goalText"
@@ -112,35 +111,6 @@ const EditProfile = () => {
 					id="dietPlan"
 					label="Diet Plan"
 					type="text"
-					register={register}
-					errors={errors}
-				/>
-
-				<Input
-					id="caloriesPerDay"
-					label="Calories per Day"
-					type="number"
-					register={register}
-					errors={errors}
-				/>
-				<Input
-					id="proteinGrams"
-					label="Protein (g)"
-					type="number"
-					register={register}
-					errors={errors}
-				/>
-				<Input
-					id="fatGrams"
-					label="Fat (g)"
-					type="number"
-					register={register}
-					errors={errors}
-				/>
-				<Input
-					id="carbGrams"
-					label="Carbs (g)"
-					type="number"
 					register={register}
 					errors={errors}
 				/>
@@ -183,11 +153,14 @@ const EditProfile = () => {
 
 				<button
 					type="submit"
-					className="col-span-1 md:col-span-2 bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-600 transition"
+					disabled={loading}
+					className="col-span-1 md:col-span-2 bg-indigo-500 font-semibold text-white py-3 rounded-xl hover:bg-indigo-600 transition disabled:opacity-50"
 				>
-					Save Profile
+					{loading ? "Saving..." : "Save Profile"}
 				</button>
 			</form>
+
+			{message && <p className="mt-4 text-lg font-medium">{message}</p>}
 		</div>
 	);
 };

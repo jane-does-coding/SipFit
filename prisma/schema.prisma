@@ -6,7 +6,6 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   name           String
@@ -15,16 +14,12 @@ model User {
   hashedPassword String
 
   age            Int?
+  gender         String?
   weightLbs      Float?
   goalWeightLbs  Float?
   heightInches   Float?
-  bmi            Float?
   goalText       String?
   dietPlan       String?
-  caloriesPerDay Int?
-  proteinGrams   Int?
-  fatGrams       Int?
-  carbGrams      Int?
 
   waistInches    Float?
   chestInches    Float?
