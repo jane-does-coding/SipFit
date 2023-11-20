@@ -60,7 +60,6 @@ const DashboardPage = ({ currentUser }: { currentUser: User }) => {
 		return { diff };
 	};
 
-	// Main calculated values
 	const bmi = calcBMI();
 	const range = healthyRange();
 	const bmr = calcBMR();
@@ -75,7 +74,6 @@ const DashboardPage = ({ currentUser }: { currentUser: User }) => {
 
 	const goalProgress = calcGoalProgress();
 
-	// Card component
 	const Card = ({
 		title,
 		content,
@@ -91,7 +89,6 @@ const DashboardPage = ({ currentUser }: { currentUser: User }) => {
 		</div>
 	);
 
-	// BMI visual bar
 	const BMIGraph = ({ bmi }: { bmi: number }) => {
 		const min = 10;
 		const max = 40;

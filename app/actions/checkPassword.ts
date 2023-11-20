@@ -54,26 +54,21 @@ const commonPasswords = [
 export default async function checkPassword(password: string) {
 	let message;
 
-	// Password should be at least 6 characters long
 	if (password.length < 6) {
 		message = "Password should be at least 6 characters long";
 	}
 
-	// Password should be at most 16 characters long
 	if (password.length > 16) {
 		message = "Password should be at most 16 characters long";
 	}
 
-	// Avoid common passwords
 	if (commonPasswords.includes(password.toLowerCase())) {
 		message = "Please choose a less common password";
 	}
 
-	// Avoid sequential or repeated characters
 	if (/(\w)\1{2,}/.test(password)) {
 		message = "Password should not contain repeated characters";
 	}
 
-	// Return the result
 	return { error: message };
 }

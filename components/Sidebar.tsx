@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
+	LuApple,
 	LuChartLine,
 	LuCircleFadingPlus,
 	LuLayoutDashboard,
@@ -73,14 +74,14 @@ const Sidebar = () => {
 
 				{/* Analytics */}
 				<Link
-					href={"/analytics"}
+					href={"/analitics"}
 					className={`w-[4vw] flex items-center justify-center relative aspect-[1] rounded-[2vh] ${
-						isActive("/analytics") ? activeIconClasses : inactiveIconClasses
+						isActive("/analitics") ? activeIconClasses : inactiveIconClasses
 					}`}
 				>
 					<LuChartLine
 						className={`text-[3vh] ${
-							isActive("/analytics") ? "text-indigo-600" : ""
+							isActive("/analitics") ? "text-indigo-600" : ""
 						}`}
 					/>
 					<div className="absolute w-[15vw] text-[2.25vh] right-[-16.5vw] flex items-center justify-start top-[50%] font-medium hover:pl-[0.25vw] py-[1vh] transition-all translate-y-[-50%]">
@@ -90,37 +91,18 @@ const Sidebar = () => {
 
 				{/* Notification */}
 				<Link
-					href={"/notifications"}
+					href={"/diet"}
 					className={`w-[4vw] flex items-center justify-center relative aspect-[1] rounded-[2vh] ${
-						isActive("/notifications") ? activeIconClasses : inactiveIconClasses
+						isActive("/diet") ? activeIconClasses : inactiveIconClasses
 					}`}
 				>
-					<LuMail
+					<LuApple
 						className={`text-[3vh] ${
-							isActive("/notifications") ? "text-indigo-600" : ""
+							isActive("/diet") ? "text-indigo-600" : ""
 						}`}
 					/>
 					<div className="absolute w-[15vw] text-[2.25vh] right-[-16.5vw] flex items-center justify-start top-[50%] font-medium hover:pl-[0.25vw] py-[1vh] transition-all translate-y-[-50%]">
-						Notification
-					</div>
-				</Link>
-
-				{/* Send Interview */}
-				<Link
-					href={"/send-interview"}
-					className={`w-[4vw] flex items-center justify-center relative aspect-[1] rounded-[2vh] ${
-						isActive("/send-interview")
-							? activeIconClasses
-							: inactiveIconClasses
-					}`}
-				>
-					<LuCircleFadingPlus
-						className={`text-[3vh] ${
-							isActive("/send-interview") ? "text-indigo-600" : ""
-						}`}
-					/>
-					<div className="absolute w-[15vw] text-[2.25vh] right-[-16.5vw] flex items-center justify-start top-[50%] font-medium hover:pl-[0.25vw] py-[1vh] transition-all translate-y-[-50%]">
-						Send Interview
+						Meal Plan
 					</div>
 				</Link>
 

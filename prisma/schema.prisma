@@ -6,11 +6,12 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
 model User {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   username       String
-  email          String   @unique
+  email          String        @unique
   hashedPassword String
 
   age            Int?
@@ -27,10 +28,11 @@ model User {
   armInches      Float?
   thighInches    Float?
 
-  progressNotes  ProgressNote[]  
+  progressNotes  ProgressNote[]
+  mealPlans      MealPlan[]   
 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 }
 
 model ProgressNote {
@@ -43,4 +45,21 @@ model ProgressNote {
   note      String
 
   createdAt DateTime @default(now())
+}
+
+model MealPlan {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+
+  calories    Int
+  proteinGrams Float
+  carbsGrams   Float
+  fatsGrams    Float
+
+  planText     String  
+  confirmed    Boolean  @default(false)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
