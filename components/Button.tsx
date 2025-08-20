@@ -12,7 +12,6 @@ interface ButtonProps {
 	beforeIcon?: IconType;
 	afterIcon?: IconType;
 	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-	purple?: Boolean;
 }
 
 const Button = ({
@@ -24,7 +23,6 @@ const Button = ({
 	outline,
 	disabled,
 	onClick,
-	purple,
 }: ButtonProps) => {
 	return (
 		<button
