@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import type { Container } from "@tsparticles/engine";
 
 const AnimatedBackground = ({ value }: { value: number }) => {
 	const [isInit, setIsInit] = useState(false);
@@ -17,7 +18,7 @@ const AnimatedBackground = ({ value }: { value: number }) => {
 		initializeParticles();
 	}, []);
 
-	const particlesLoaded = async (container: any) => {
+	const particlesLoaded = async (container: Container | undefined) => {
 		console.log(container);
 	};
 
