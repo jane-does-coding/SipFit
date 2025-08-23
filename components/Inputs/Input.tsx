@@ -23,14 +23,14 @@ const Input = ({
 	errors,
 }: InputProps) => {
 	return (
-		<div className="w-full relative">
+		<div className="w-full c">
 			<input
 				id={id}
 				disabled={disabled}
 				{...register(id, { required })}
 				placeholder=" "
 				type={type}
-				className={`peer w-full p-3 pt-6 pl-4 font-light bg-neutral-100/75 text-black border-2 border-neutral-300 rounded-[2vh] outline-none transition disabled:opacity-70 disabled:cursor-not-allowed relative
+				className={`peer w-full p-3 pt-6  pl-4 font-light bg-neutral-100/75 text-black border-2 border-neutral-300 rounded-[2vh] outline-none transition disabled:opacity-70 disabled:cursor-not-allowed relative
           ${errors[id] ? "border-rose-400" : "border-neutral-300"}
           ${errors[id] ? "focus:border-rose-500" : "focus:border-neutral-400"}
         `}

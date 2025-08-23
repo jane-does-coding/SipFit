@@ -7,6 +7,7 @@ import {
 	LuApple,
 	LuChartLine,
 	LuCircleFadingPlus,
+	LuFeather,
 	LuLayoutDashboard,
 	LuLogOut,
 	LuMail,
@@ -86,6 +87,23 @@ const Sidebar = () => {
 					/>
 					<div className="absolute w-[15vw] text-[2.25vh] right-[-16.5vw] flex items-center justify-start top-[50%] font-medium hover:pl-[0.25vw] py-[1vh] transition-all translate-y-[-50%]">
 						Analytics
+					</div>
+				</Link>
+
+				{/* Journal */}
+				<Link
+					href={"/journal"}
+					className={`w-[4vw] flex items-center justify-center relative aspect-[1] rounded-[2vh] ${
+						isActive("/journal") ? activeIconClasses : inactiveIconClasses
+					}`}
+				>
+					<LuFeather
+						className={`text-[3vh] ${
+							isActive("/journal") ? "text-indigo-600" : ""
+						}`}
+					/>
+					<div className="absolute w-[15vw] text-[2.25vh] right-[-16.5vw] flex items-center justify-start top-[50%] font-medium hover:pl-[0.25vw] py-[1vh] transition-all translate-y-[-50%]">
+						Journal
 					</div>
 				</Link>
 
